@@ -17,7 +17,7 @@ VALUES
     ('Monica', 'Geller', 2),
     ('Phoebe', 'Buffay', 3),
     ('Chandler', 'Bing', 4),
-    ('Ross', 'Geler', 4);
+    ('Ross', 'Geller', 4);
 
 UPDATE employees SET manager_id = 1 WHERE role_id = 2 
 UPDATE employees SET manager_id = 4 WHERE role_id = 4;
