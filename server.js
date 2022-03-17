@@ -18,28 +18,32 @@ const question = ([
     },
 ])
 
-.then((answer) => {
-    const {choices} = answer;
-    if (choices === "View all departments") {
-        viewDepartments();
-    }
-})
-
-
-
-// FUNCTIONS
-
-// Function to showDepartments
-showDepartments = () => {
-    console.log(`SELECT * FROM departments`);
-}
-
-
 function init() {
     inquirer.prompt(question)
-    .then(function(answer) {
-        console.log(answer);
-    })
+    .then((answer) => {
+        const { choices } = answer;
+        if (choices === "View all departments") {
+        viewDepartments();
+        }
+        if (choices === "View all roles") {
+            viewRoles()
+        }
+    })        
 }
+
+
+//FUNCTIONS
+
+// Function viewDepartment
+viewDepartments = () => {
+    console.log("Viewing All Departments");
+}
+// Function viewRoles
+viewRoles = () => {
+    console.log("Viewing All Roles");
+}
+
+
+
 // // Function call to initialize app
  init();
