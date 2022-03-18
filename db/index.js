@@ -7,7 +7,17 @@ class DB {
     // Display All Employees
     viewAllEmployees(){
         return this.connection.query(
-            "SELECT * FROM employee;"
+            `SELECT employee.id, 
+                      employee.first_name, 
+                      employee.last_name, 
+                      role.title, 
+                      department.name AS department,
+                      role.salary, 
+                      CONCAT (manager.first_name, " ", manager.last_name) AS manager
+               FROM employee
+                      LEFT JOIN role ON employee.role_id = role.id
+                      LEFT JOIN department ON role.department_id = department.id
+                      LEFT JOIN employee manager ON employee.manager_id = manager.id`
         );
     }
 
@@ -28,10 +38,26 @@ class DB {
     // Display All Roles
     addDepartment(){
         return this.connection.query(
-            "SELECT * FROM role;"
+            `INSERT INTO department (name)
+                  VALUES (?)`
         );
     }
+
+    // Display addRole
+    addRole(){
+        return this.connection.query(
+            `SELECT name, id FROM department`
+        );
+    }
+
+
+
+
 }
+
+
+
+
 
 module.exports = new DB(connection);
 

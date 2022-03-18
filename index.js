@@ -19,23 +19,26 @@ const question = [
     },
 ]
 
-
 function init() {
     inquirer.prompt(question)
     .then((answer) => {
         const { choices } = answer;
         if (choices === "View all departments") {
-        viewDepartments();
+        viewAllDepartments();
         }
         if (choices === "View all roles") {
-            viewAllRoles()
+            viewAllRoles();
         }
         if (choices === "View all employees") {
-            viewAllEmployees()
+            viewAllEmployees();
         }
         if (choices === "Add a department") {
             addDepartment();
         }
+        if (choices === "Add a role") {
+            addNewRole();
+        }
+
     })        
 }
 
@@ -43,7 +46,7 @@ function init() {
 //FUNCTIONS
 
 // Function viewDepartment
-async function viewDepartments() {
+async function viewAllDepartments() {
     const departments = await db.viewDepartments();
     console.table(departments);
     init();
@@ -63,12 +66,79 @@ async function viewAllEmployees() {
     init();
 }
 
-// Function addDepartment
+
+// // Function addDepartment
+addDepartment = () => {
+    inquirer.prompt([
+      {
+        type: 'input', 
+        name: 'addDept',
+        message: "What department do you want to add?",
+        validate: addDept => {
+          if (addDept) {
+              return true;
+          } else {
+              console.log('Please enter a department');
+              return false;
+          }
+        }
+      }
+    ])
+}
 async function addDepartment() {
     const department = await db.addDepartment();
     console.table(department);
     init();
 }
+
+
+// // Function addRole
+
+addNewRole = () => {
+    inquirer.prompt([
+      {
+        type: 'input', 
+        name: 'role',
+        message: "What role do you want to add?",
+        validate: addRole => {
+          if (addRole) {
+              return true;
+          } else {
+              console.log('Please enter a role');
+              return false;
+          }
+        }
+      },    
+      
+      {
+        type: 'input', 
+        name: 'salary',
+        message: "What is the salary of this role?",
+        validate: addSalary => {
+          if (isNAN(addSalary)) {
+              return true;
+          } else {
+              console.log('Please enter a salary');
+              return false;
+          }
+        }
+      }
+    
+    ])
+}
+async function addNewRole() {
+    const newRole = await db.addRole();
+    console.table(newRole);
+    init();
+}
+
+
+// // Function addDepartment
+// async function addDepartment() {
+//     const employees = await db.addDepartment();
+//     console.table(employees);
+//     init();
+// }
 
 // // Function call to initialize app
  init();
