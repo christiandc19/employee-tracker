@@ -50,6 +50,13 @@ class DB {
         );
     }
 
+    // Display addEmployee
+    addEmployee(){
+    return this.connection.query(
+    `SELECT name, id FROM department`
+    );
+    }
+    
 
 
 

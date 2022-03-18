@@ -38,7 +38,9 @@ function init() {
         if (choices === "Add a role") {
             addNewRole();
         }
-
+        if (choices === "Add an employee") {
+            addNewEmployee();
+        }
     })        
 }
 
@@ -93,7 +95,6 @@ async function addDepartment() {
 
 
 // // Function addRole
-
 addNewRole = () => {
     inquirer.prompt([
       {
@@ -129,6 +130,73 @@ addNewRole = () => {
 async function addNewRole() {
     const newRole = await db.addRole();
     console.table(newRole);
+    init();
+}
+
+
+// // Function addRole
+addNewEmployee = () => {
+    inquirer.prompt([
+      {
+        type: 'input', 
+        name: 'firstName',
+        message: "New Employee's First Name?",
+        validate: newEmployeeFirstName => {
+          if (newEmployeeFirstName) {
+              return true;
+          } else {
+              console.log('Please enter first name');
+              return false;
+          }
+        }
+      },    
+      
+      {
+        type: 'input', 
+        name: 'lastName',
+        message: "New Employee's Last Name?",
+        validate: newEmployeeLastName => {
+          if (newEmployeeLastName) {
+              return true;
+          } else {
+              console.log('Please enter last name');
+              return false;
+          }
+        }
+      },
+
+      {
+        type: 'input', 
+        name: 'role',
+        message: "New Employee's Role?",
+        validate: newEmployeeRole => {
+          if (newEmployeeRole) {
+              return true;
+          } else {
+              console.log('Please employee/s role');
+              return false;
+          }
+        }
+      },
+
+      {
+        type: 'input', 
+        name: 'managersName',
+        message: "New Employee's Manager's Name?",
+        validate: newEmployeeManager => {
+          if (newEmployeeManager) {
+              return true;
+          } else {
+              console.log('Please enter employee/s manager/s name');
+              return false;
+          }
+        }
+      },
+    ])
+}
+async function addNewEmployee() {
+    const newEmployee = await db.addEmployee();
+    console.table(newEmployee);
     init();
 }
 
