@@ -1,23 +1,20 @@
-INSERT INTO departments (name)
+INSERT INTO department (name)
 VALUES
     ('IT Department'),
     ('HR Department');
 
-INSERT INTO roles (title, salary, department_id)
+INSERT INTO role (title, salary, department_id)
 VALUES
     ('IT Manager', 75000, 1),
     ('IT Staff', 50000, 1),
     ('HR Manager', 45000, 2),
     ('HR Staff', 35000, 2);
 
-INSERT INTO employees (first_name, last_name, role_id)
+INSERT INTO employee (first_name, last_name, role_id, manager_id)
 VALUES
-    ('Joey', 'Tribiani', 1),
-    ('Rachel', 'Green', 2),
-    ('Monica', 'Geller', 2),
-    ('Phoebe', 'Buffay', 3),
-    ('Chandler', 'Bing', 4),
-    ('Ross', 'Geller', 4);
-
-UPDATE employees SET manager_id = 1 WHERE role_id = 2 
-UPDATE employees SET manager_id = 4 WHERE role_id = 4;
+    ('Joey', 'Tribiani', 1, NULL),
+    ('Rachel', 'Green', 2, NULL),
+    ('Monica', 'Geller', 2, 1),
+    ('Phoebe', 'Buffay', 3, 2),
+    ('Chandler', 'Bing', 4, 1),
+    ('Ross', 'Geller', 4, 2);
