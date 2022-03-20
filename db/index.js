@@ -31,35 +31,41 @@ class DB {
     // Display All Roles
     viewAllRoles(){
         return this.connection.query(
-            "SELECT * FROM role;"
+            `SELECT role.id, role.title, role.salary, department.name AS department
+               FROM role
+               INNER JOIN department ON role.department_id = department.id`
         );
     }
 
-    // Display All Roles
-    addDepartment(){
-        return this.connection.query(
-            `INSERT INTO department (name)
-                  VALUES (?)`
-        );
+    // Display Added Department
+    addDepartment(name){
+        // console.log(name, "Line 40");
+        const sql = `INSERT INTO department (name)
+        VALUES (?)`
+        return this.connection.query(sql, name, (err, result) => {
+            if (err) throw err;
+            console.log("Department added!");
+        });
     }
 
     // Display addRole
-    addRole(){
-        return this.connection.query(
-            `SELECT name, id FROM department`
-        );
+    addRole(name){
+        console.log(name, "Line 53");
+        const sql = `INSERT INTO role (firstName, lastName, salary)
+        VALUES (?, ?, ?)`
+        return this.connection.query(sql, name, (err, result) => {
+            if (err) throw err;
+            console.log("Add Role Success");
+        });
     }
 
     // Display addEmployee
     addEmployee(){
     return this.connection.query(
     `SELECT name, id FROM department`
-    );
+        );
     }
     
-
-
-
 }
 
 

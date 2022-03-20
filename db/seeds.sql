@@ -18,3 +18,4 @@ VALUES
     ('Phoebe', 'Buffay', 3, 2),
     ('Chandler', 'Bing', 4, 1),
     ('Ross', 'Geller', 4, 2);
+
