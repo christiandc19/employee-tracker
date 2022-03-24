@@ -51,8 +51,8 @@ class DB {
     // Display addRole
     addRole(name){
         console.log(name, "Line 53");
-        const sql = `INSERT INTO role (firstName, lastName, salary)
-        VALUES (?, ?, ?)`
+        const sql = `INSERT INTO role (title, salary, department_id) VALUES (?, ?, ?)`
+
         return this.connection.query(sql, name, (err, result) => {
             if (err) throw err;
             console.log("Add Role Success");
@@ -62,14 +62,11 @@ class DB {
     // Display addEmployee
     addEmployee(){
     return this.connection.query(
-    `SELECT name, id FROM department`
+    `INSERT INTO employee(first_name, last_name, role_id, manager_id)
+    VALUES (?, ?, ?)`
         );
     }
-    
 }
-
-
-
 
 
 module.exports = new DB(connection);

@@ -71,7 +71,7 @@ async function viewAllEmployees() {
     init();
 }
 
-// // Function addDepartment
+//Function addDepartment
 askDepartment = () => {
   return inquirer.prompt([
       {
@@ -100,104 +100,76 @@ async function addDepartment() {
 }
 
 
-// Function addRole
-askRole = () => {
-  return inquirer.prompt([
-    {
-      type: 'input', 
-      name: 'firstName',
-      message: "Enter First Name:",
-      validate: addFirstName => {
-        if (addFirstName) {
-            return true;
-        } else {
-            console.log('Please Enter First Name:');
-            return false;
-        }
+//Function addRole
+  askRole = () => {
+  return inquirer
+    .prompt([
+      {
+        type: "input",
+        message: "What's the name of the role?",
+        name: "roleName"
+      },
+      {
+        type: "input",
+        message: "What is the salary for this role?",
+        name: "salaryTotal"
+      },
+      {
+        type: "input",
+        message: "What is the department id number?",
+        name: "deptID"
       }
-    },
-
-    {
-      type: 'input', 
-      name: 'lasttName',
-      message: "Enter Last Name:",
-      validate: addLastName => {
-        if (addLastName) {
-            return true;
-        } else {
-            console.log('Please Enter Last Name:');
-            return false;
-        }
-      }
-    },
-    {
-      type: 'input', 
-      name: 'salary',
-      message: "Enter Salary:",
-      validate: addSalary => {
-        if (addSalary) {
-            return true;
-        } else {
-            console.log('Please Enter Salary:');
-            return false;
-        }
-      }
-    }
-  ])
+    ])
 }
-    
 async function addRole() {
   askRole().then(response => 
   {
-  const role = db.addRole(response.addFirstName, response.addLastName, response.addSalary);
+  const role = db.addRole(response.addDept, response.salaryTotal, response.deptID);
   console.table(role);
   init();
   }
   );
 }
 
-// Function Add Employee
 
+  
+// Function Add Employee
 askNewEmployee = () => {
-    return inquirer.prompt([
+  return inquirer
+    .prompt([
       {
-        type: 'input', 
-        name: 'firstName',
-        message: "New Employee's First Name?",
-        validate: newEmployeeFirstName => {
-          if (newEmployeeFirstName) {
-              return true;
-          } else {
-              console.log('Please enter first name');
-              return false;
-          }
-        }
+        type: "input",
+        message: "Employee's First Name",
+        name: "first_name"
+      },
+      {
+        type: "input",
+        message: "Employee's Last Name",
+        name: "last_name"
+      },
+      {
+        type: "input",
+        message: "Employee's Role ID",
+        name: "role_id"
+      },
+      {
+        type: "input",
+        message: "Employee's Manager's ID",
+        name: "manager_id"
       }
     ])
 }
 async function addEmployee() {
-    askNewEmployee().then(response => 
+    askNewEmployee().then(res => 
       {
-        const employee = db.addEmployee(response,newEmployeeFirstName)
+        const employee = db.addEmployee(res.first_name, res.last_name, res.role_id, res.manager_id)
     console.table(employee);
     init();
   })
 }
 
 
-async function addRole() {
-  askRole().then(response => 
-  {
-  const role = db.addRole(response.addRole);
-  console.table(role);
-  init();
-  }
-  );
-}
-
-
-
-// // Function addRole
+// // Function Update Employee
 updateEmployee = () => {
   inquirer.prompt([
     {
