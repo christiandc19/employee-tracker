@@ -49,22 +49,36 @@ class DB {
     }
 
     // Display addRole
-    addRole(name){
-        console.log(name, "Line 53");
+    addRole(roleName, salaryTotal, deptID){
+        console.log(roleName, salaryTotal, deptID, "Line 53");
+        const params = [roleName, salaryTotal, deptID];
         const sql = `INSERT INTO role (title, salary, department_id) VALUES (?, ?, ?)`
 
-        return this.connection.query(sql, name, (err, result) => {
+        return this.connection.query(sql, params, (err, result) => {
             if (err) throw err;
             console.log("Add Role Success");
         });
     }
 
     // Display addEmployee
-    addEmployee(){
-    return this.connection.query(
-    `INSERT INTO employee(first_name, last_name, role_id, manager_id)
-    VALUES (?, ?, ?)`
-        );
+    addEmployee(firstName, lastName, roleID, managerID){
+        const params = [firstName, lastName, roleID, managerID];
+        const sql = `INSERT INTO employee
+            (first_name, last_name, role_id, manager_id) 
+            VALUES (?, ?, ?, ?)`
+        return this.connection.query(sql, params, (err, result) => {
+            if (err) throw err;
+            console.log("Add Employee Success");
+        });
+    }
+
+    // Update Employee role
+    updateEmployeeRole(employeeId, employeeTitle){
+        const params = [employeeTitle, employeeId];
+        const sql = `UPDATE employee SET role_id = ? WHERE id = ?`
+        return this.connection.query(sql, params, (err, result) => {
+            if (err) throw err;
+        });
     }
 }
 

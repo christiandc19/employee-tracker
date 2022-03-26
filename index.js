@@ -124,7 +124,7 @@ async function addDepartment() {
 async function addRole() {
   askRole().then(response => 
   {
-  const role = db.addRole(response.addDept, response.salaryTotal, response.deptID);
+  const role = db.addRole(response.roleName, response.salaryTotal, response.deptID);
   console.table(role);
   init();
   }
@@ -170,28 +170,64 @@ async function addEmployee() {
 
 
 // // Function Update Employee
-updateEmployee = () => {
+async function updateEmployee() {
+  // View all the employees
+  const employees = await db.viewAllEmployees();
+  // View all the roles
+  const roles = await db.viewAllRoles();
+  const employeeName = [];
+  const employeeRole = [];
+
+  // Push Name of employee to employeeName Array
+  const empList = employees.forEach(employee => {
+    employeeName.push(employee.first_name)
+  });
+
+  // Push Role in employeeRole Array
+  const roleList = roles.forEach(role => {
+    employeeRole.push(role.title)
+  });
+
+
   inquirer.prompt([
     {
-      type: 'input', 
+      type: 'list', 
       name: 'name',
       message: "Which employee would you like to update?",
-      validate: name => {
-        if (name) {
-            return true;
-        } else {
-            console.log('Please enter first name');
-            return false;
-        }
-      }
+      choices: employeeName
+    },
+    {
+      type: 'list', 
+      name: 'role',
+      message: "What is their new role?",
+      choices: employeeRole
     }
-  ])
-}
-async function updateEmployee() {
-    const employee = await db.updateEmployee();
-    console.table(employee);
+  ]).then((answer) => {
+    // store the new role_id and the employee id
+    let newTitleId, employeeId;
+
+    // store the new role_id that matches the role title
+    roles.forEach((role) => {
+      if (answer.role === role.title) {
+        newTitleId = role.id;
+      }
+    });
+
+    // store the employeeId that matches the first name
+    employees.forEach((employee) => {
+      if(answer.name === employee.first_name) {
+        employeeId = employee.id
+      }
+    })
+
+    // call the updateEmployeeRole function
+    db.updateEmployeeRole(employeeId, newTitleId);
     init();
+  })
 }
+
+
+
 
 
 // // Function call to initialize app
