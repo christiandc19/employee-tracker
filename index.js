@@ -199,7 +199,7 @@ async function updateEmployee() {
     {
       type: 'list', 
       name: 'role',
-      message: "What is their new role?",
+      message: "What is the employee's new role?",
       choices: employeeRole
     }
   ]).then((answer) => {
@@ -225,9 +225,6 @@ async function updateEmployee() {
     init();
   })
 }
-
-
-
 
 
 // // Function call to initialize app
