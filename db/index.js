@@ -50,7 +50,7 @@ class DB {
 
     // Display addRole
     addRole(roleName, salaryTotal, deptID){
-        console.log(roleName, salaryTotal, deptID, "Line 53");
+        // console.log(roleName, salaryTotal, deptID, "Line 53");
         const params = [roleName, salaryTotal, deptID];
         const sql = `INSERT INTO role (title, salary, department_id) VALUES (?, ?, ?)`
 
