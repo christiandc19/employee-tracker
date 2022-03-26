@@ -1,14 +1,13 @@
-# employee-tracker
-## ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
-  # Note-Taker
-  ## Create an application called Note Taker that can be used to write and save notes. This application will use an Express.js back end and will save and retrieve note data from a JSON file.
+  # employee-tracker
+  ## ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+  ## A command-line application to manage a company's employee database, using Node.js, Inquirer, and MySQL.
   ------------------
   ## TECHNOLOGIES USED
   ### Node.js
   ### JavaScript
   ------------------
-
-![screenshot](./assets/images.screenshot.png)
+## SCREENSHOT
+![screenshot](./assets/images/screenshot.png)
 
   ------------------
   ## INSTALLATION
