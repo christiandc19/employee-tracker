@@ -24,7 +24,7 @@
   ## DEPLOYMENT  
   ### https://christiandc19.github.io/employee-tracker/
   ### https://github.com/christiandc19/employee-tracker/
-  ### Walkthrough video link: https://bootcampspot.instructuremedia.com/lti/launch?custom_arc_launch_type=embed&custom_arc_media_id=14b94d0d-c490-4ac2-a6d8-db70101ef70f-2252
+  ### Walkthrough video link: https://bootcampspot.instructuremedia.com/embed/4e50f7e2-56ab-4b93-a0f4-f8208ce927a9
   ------------------
   ## QUESTIONS  
   ### If you have any questions, you may contact me at:

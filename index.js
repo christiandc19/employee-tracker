@@ -1,4 +1,5 @@
 const inquirer = require('inquirer');
+const { connection } = require('./db/index');
 require('console.table');
 const db = require('./db/index');
 
@@ -14,7 +15,8 @@ const question = [
                 'Add a department', 
                 'Add a role', 
                 'Add an employee', 
-                'Update an employee role'
+                'Update an employee role',
+                'Exit'
                 ]
     },
 ]
@@ -44,11 +46,15 @@ function init() {
         if (choices === "Update an employee role") {
           updateEmployee();
         }
+        if (choices === "Exit") {
+          connection.end();
+        }
     })        
 }
 
 
 //FUNCTIONS
+
 
 // Function viewDepartment
 async function viewAllDepartments() {
